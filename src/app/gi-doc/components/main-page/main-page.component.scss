@@ -1,0 +1,118 @@
+
+
+:host {
+  left: 0;
+  top: 0;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Courier New', Courier, monospace;
+  box-sizing: border-box;
+  font-size: 14pt;
+}
+
+input, button, textarea {
+  resize: none;
+  font-size: 14pt;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+input:disabled, textarea:disabled {
+  background-color: unset;
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  padding: 1em;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 0.4em 0.1em silver;
+
+  &__search {
+    width: 250px;
+    outline: none;
+  }
+
+  button {
+    margin-left: 1rem;
+  }
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 1;
+
+  &__section-list {
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    min-height: 0;
+    max-width: 500px;
+    padding-top: 1rem;
+    box-sizing: border-box;
+    box-shadow: 0.4rem 0px 0.4rem -0.4rem silver;
+  }
+
+  &__section-item {
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    width: auto;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &__section-item:hover {
+    background-color: whitesmoke;
+  }
+  &__section-item.selected {
+    background-color: whitesmoke !important;
+  }
+
+  &__editor-container {
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  &__title {
+    display: flex;
+    padding: 0.5rem 0;
+    box-sizing: border-box;
+
+    button {
+      flex-shrink: 0;
+      margin-left: 1rem;
+    }
+  }
+
+  &__title-editor {
+    width: 100%;
+    flex-shrink: 1;
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+  }
+
+  &__content-editor {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 1;
+    border: none;
+    outline: none;
+  }
+}

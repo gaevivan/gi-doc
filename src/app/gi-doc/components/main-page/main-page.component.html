@@ -1,0 +1,49 @@
+<div class="navbar">
+  <input
+    type="text"
+    class="navbar__search"
+    placeholder="Поиск..."
+    [formControl]="searchControl"
+  />
+  <button (click)="addSection()" *ngIf="!(isReadonly$ | async)">Добавить раздел</button>
+  <button (click)="exportPDF()" [disabled]="!(sectionControlList$ | async).length">Экспорт PDF</button>
+  <button (click)="view()" *ngIf="!(isReadonly$ | async)">Просмотр</button>
+  <button (click)="edit()" *ngIf="isReadonly$ | async">Редактирование</button>
+</div>
+<div class="content">
+  <div class="content__section-list">
+    <ng-container
+      *ngFor="
+        let sectionControl of (filteredSections$ | async);
+        let index = index
+      "
+    >
+      <div
+        class="content__section-item"
+        [ngClass]="{
+          selected: (selectedSectionControlIndex$ | async) === index
+        }"
+        (click)="selectSection(index)"
+      >
+        {{ sectionControl.value.index }} {{ sectionControl.value.title }}
+      </div>
+    </ng-container>
+  </div>
+  <div class="content__editor-container">
+    <ng-container *ngIf="selectedSectionControl$ | async as selectedSection">
+      <div class="content__title">
+        <input
+          type="text"
+          class="content__title-editor"
+          [formControl]="selectedSection.controls.title"
+        />
+        <button (click)="addSubsection()" *ngIf="!(isReadonly$ | async)">Добавить подраздел</button>
+        <button (click)="removeSection()" *ngIf="!(isReadonly$ | async)">Удалить</button>
+      </div>
+      <textarea
+        class="content__content-editor"
+        [formControl]="selectedSection.controls.content"
+      ></textarea>
+    </ng-container>
+  </div>
+</div>
